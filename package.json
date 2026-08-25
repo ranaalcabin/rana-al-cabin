@@ -8,9 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:rana-al-cabin": "node --max-old-space-size=304096 dist/rana-al-cabin/server/server.mjs",
-    "postinstall": "patch-package",
     "build:ssr": "ng build"
   },
+
+  
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.0.3",
