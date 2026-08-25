@@ -34,23 +34,11 @@
               "includePaths": ["src/styles"]
             },
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "src/assets/i18n",
-                "output": "assets/i18n/"
-              },
               {
                 "glob": "**/*",
                 "input": "public",
                 "output": "/"
               },
-              {
-    "glob": "**/*",
-    "input": "src/media",
-    "output": "/media"
-  },
               {
                 "glob": "sitemap.xml",
                 "input": "src",
@@ -128,13 +116,6 @@
               "includePaths": ["src/styles"]
             },
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "src/assets/i18n",
-                "output": "assets/i18n/"
-              },
               {
                 "glob": "**/*",
                 "input": "public",
@@ -145,11 +126,6 @@
                 "input": "src",
                 "output": "/"
               },
-              {
-    "glob": "**/*",
-    "input": "src/media",
-    "output": "/media"
-  },
               {
                 "glob": "robots.txt",
                 "input": "src",

@@ -9,7 +9,7 @@ export class TranslateServerLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
     const possiblePaths = [
       path.join(process.cwd(), 'dist', 'rana-al-cabin', 'browser', 'assets', 'i18n', `${lang}.json`),
-      path.join(process.cwd(), 'src', 'assets', 'i18n', `${lang}.json`),
+      path.join(process.cwd(), 'public', 'assets', 'i18n', `${lang}.json`),
     ];
 
     for (const filePath of possiblePaths) {
