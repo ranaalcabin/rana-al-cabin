@@ -1,0 +1,29 @@
+/* app.css */
+:root {
+  --primary-color: #003366;
+  --accent-color: #ffd700;
+  --background-color: #ffffff;
+  --text-color: #333333;
+}
+
+body.dark {
+  --primary-color: #66a3ff;
+  --accent-color: #ffed4e;
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}

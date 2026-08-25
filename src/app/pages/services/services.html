@@ -1,0 +1,80 @@
+<div class="services-container" [ngClass]="themeService.getCurrentTheme()">
+  <div class="image-modal" *ngIf="selectedImage" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close-btn" (click)="closeModal()">&times;</span>
+      <img [src]="selectedImage" alt="Enlarged view" />
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isSidebarCollapsed" [ngClass]="themeService.getCurrentTheme()">
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i class="fas" [ngClass]="isSidebarCollapsed ? 'fa-bars' : 'fa-times'"></i>
+    </button>
+    <ul class="sidebar-nav" [ngClass]="themeService.getCurrentTheme()">
+      <li *ngFor="let service of services">
+        <a href="#" (click)="scrollTo($event, service.id)">
+          <i [class]="service.icon"></i>
+          <span *ngIf="!isSidebarCollapsed">{{ service.title | translate }}</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Content -->
+  <div class="services-content"[ngClass]="themeService.getCurrentTheme()">
+    <!-- Hero Section -->
+    <section class="hero"[ngClass]="themeService.getCurrentTheme()">
+      <h1>{{ 'SERVICES.HERO.TITLE' | translate }}</h1>
+      <p>{{ 'SERVICES.HERO.SUBTITLE' | translate }}</p>
+    </section>
+
+    <!-- Dynamic Service Sections -->
+    <section *ngFor="let service of services" class="service-section" [attr.id]="service.id"[ngClass]="themeService.getCurrentTheme()">
+      <div class="service-card"[ngClass]="themeService.getCurrentTheme()">
+        <!-- Top Row: Image + Description/Features -->
+        <div class="top-row">
+          <div class="left-col">
+            <img [src]="service.image" [alt]="service.title | translate" (click)="openModal(service.image)"  />
+          </div>
+          <div class="right-col">
+            <h2>{{ service.title | translate }}</h2>
+            <p>{{ service.fullDescription | translate }}</p>
+
+            <h3>{{ 'SERVICES.FEATURES' | translate }}</h3>
+            <ul>
+              <li *ngFor="let feature of service.features">
+                <i class="fas fa-check"></i> {{ feature | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Specs | Gallery | Call To Action -->
+        <div class="bottom-row">
+          <div class="specs-col">
+            <h3>{{ 'SERVICES.SPECIFICATIONS' | translate }}</h3>
+            <div class="specs">
+              <div class="spec-item" *ngFor="let spec of service.specifications">
+                <strong>{{ spec.label | translate }}:</strong> {{ spec.value | translate }}
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-col">
+            <h3>{{ 'SERVICES.GALLERY' | translate }}</h3>
+            <div class="gallery">
+              <img *ngFor="let img of service.gallery" [src]="img" [alt]="service.title | translate" (click)="openModal(img)" />
+            </div>
+          </div>
+
+          <div class="cta-col">
+            <button class="btn-primary" (click)="contactForService(service.id)">
+              {{ 'SERVICES.GET_QUOTE' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

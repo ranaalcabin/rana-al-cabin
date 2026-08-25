@@ -1,0 +1,200 @@
+<header>
+  <nav class="navbar navbar-expand-lg" [ngClass]="{'dark': isDarkTheme}" [attr.lang]="currentLang">
+    <div class="container-fluid">
+      <!-- Brand -->
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="assets/logo.png" alt="{{ 'NAVBAR.BRAND_ALT' | translate }}" class="navbar-logo" />
+      </a>
+
+      <!-- Mobile Controls Group -->
+      <div class="mobile-controls d-lg-none">
+        <!-- Theme Toggle Mobile -->
+        <button class="btn btn-sm theme-toggle me-2" (click)="toggleTheme()" 
+                [attr.aria-label]="isDarkTheme ? ('NAVBAR.LIGHT_MODE' | translate) : ('NAVBAR.DARK_MODE' | translate)">
+          <i class="fas fa-moon" *ngIf="!isDarkTheme"></i>
+          <i class="fas fa-sun" *ngIf="isDarkTheme"></i>
+        </button>
+
+        <!-- Language Selector Mobile -->
+        <select #langSelectMobile class="form-select form-select-sm me-2" (change)="changeLanguage(langSelectMobile.value)">
+          <option value="en" [selected]="currentLang === 'en'">EN</option>
+          <option value="ar" [selected]="currentLang === 'ar'">AR</option>
+        </select>
+        
+        <!-- Hamburger Menu -->
+        <button class="navbar-toggler" type="button" (click)="toggleMenu()" [ngClass]="{'active': menuOpen}" 
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
+                [attr.aria-expanded]="menuOpen" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <!-- Collapsible Menu -->
+      <div class="collapse navbar-collapse" id="navbarNav" [class.show]="menuOpen">
+        <ul style="align-items: center;" class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">
+              {{ 'NAVBAR.HOME' | translate }}
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about']" routerLinkActive="active" (click)="closeMenu()">
+              {{ 'NAVBAR.ABOUT' | translate }}
+            </a>
+          </li>
+          
+          <!-- Services Dropdown -->
+          <li class="nav-item dropdown" [ngClass]="{'show': isServicesDropdownOpen}">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+               data-bs-toggle="dropdown" [attr.aria-expanded]="isServicesDropdownOpen" 
+               (click)="toggleServicesDropdown($event)">
+              {{ 'NAVBAR.SERVICES' | translate }}
+            </a>
+            <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" 
+                [class.show]="isServicesDropdownOpen" (click)="onDropdownClick($event)">
+              <!-- Desktop Grid Layout -->
+              <div class="dropdown-grid d-none d-lg-flex">
+                <div class="dropdown-grid-column">
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="modular-workspaces" (click)="onServiceClick()">
+                      <i class="fas fa-briefcase"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MODULAR_WORKSPACES' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="portable-residences" (click)="onServiceClick()">
+                      <i class="fas fa-home"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PORTABLE_RESIDENCES' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="secure-storage" (click)="onServiceClick()">
+                      <i class="fas fa-lock"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.SECURE_STORAGE' | translate }}
+                    </a></li>
+                </div>
+                <div class="dropdown-grid-column">
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="event-modules" (click)="onServiceClick()">
+                      <i class="fas fa-calendar-alt"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.EVENT_MODULES' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="sanitation-facilities" (click)="onServiceClick()">
+                      <i class="fas fa-restroom"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.SANITATION_FACILITIES' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="prayer-sanctuaries" (click)="onServiceClick()">
+                      <i class="fas fa-praying-hands"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PRAYER_SANCTUARIES' | translate }}
+                    </a></li>
+                </div>
+                <div class="dropdown-grid-column">
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="protective-shelters" (click)="onServiceClick()">
+                      <i class="fas fa-shield-alt"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PROTECTIVE_SHELTERS' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="multi-level-cabins" (click)="onServiceClick()">
+                      <i class="fas fa-building"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MULTI_LEVEL_CABINS' | translate }}
+                    </a></li>
+                  <li><a class="dropdown-item" [routerLink]="['/services']" fragment="medical-units" (click)="onServiceClick()">
+                      <i class="fas fa-medkit"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MEDICAL_UNITS' | translate }}
+                    </a></li>
+                </div>
+              </div>
+              
+              <!-- Mobile Vertical Layout -->
+              <div class="d-lg-none"[ngClass]="{'dark': isDarkTheme}">
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="modular-workspaces" (click)="onServiceClick()">
+                    <i class="fas fa-briefcase me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MODULAR_WORKSPACES' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="portable-residences" (click)="onServiceClick()">
+                    <i class="fas fa-home me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PORTABLE_RESIDENCES' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="secure-storage" (click)="onServiceClick()">
+                    <i class="fas fa-lock me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.SECURE_STORAGE' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="event-modules" (click)="onServiceClick()">
+                    <i class="fas fa-calendar-alt me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.EVENT_MODULES' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="sanitation-facilities" (click)="onServiceClick()">
+                    <i class="fas fa-restroom me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.SANITATION_FACILITIES' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="prayer-sanctuaries" (click)="onServiceClick()">
+                    <i class="fas fa-praying-hands me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PRAYER_SANCTUARIES' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="protective-shelters" (click)="onServiceClick()">
+                    <i class="fas fa-shield-alt me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.PROTECTIVE_SHELTERS' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="multi-level-cabins" (click)="onServiceClick()">
+                    <i class="fas fa-building me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MULTI_LEVEL_CABINS' | translate }}
+                  </a></li>
+                <li><a class="dropdown-item" [routerLink]="['/services']" fragment="medical-units" (click)="onServiceClick()">
+                    <i class="fas fa-medkit me-2"></i> {{ 'NAVBAR.SERVICE_CATEGORIES.MEDICAL_UNITS' | translate }}
+                  </a></li>
+              </div>
+            </ul>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active" (click)="closeMenu()">
+              {{ 'NAVBAR.CONTACT' | translate }}
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link btn-quote" [routerLink]="['/quote']" (click)="closeMenu()">
+              <i class="fas fa-quote-right me-2"></i>{{ 'NAVBAR.GET_QUOTE' | translate }}
+            </a>
+          </li>
+          
+          <!-- Desktop Controls -->
+          <li class="nav-item d-none d-lg-block ms-2">
+            <div class="language-selector-wrapper">
+              <select #langSelect class="form-select form-select-sm language-select" (change)="changeLanguage(langSelect.value)">
+                <option value="en" [selected]="currentLang === 'en'">EN</option>
+                <option value="ar" [selected]="currentLang === 'ar'">AR</option>
+              </select>
+            </div>
+          </li>
+          
+          <li class="nav-item d-none d-lg-block ms-2">
+            <div class="theme-toggle-wrapper">
+              <button class="btn theme-toggle theme-toggle-desktop" (click)="toggleTheme()" 
+                      [attr.aria-label]="isDarkTheme ? ('NAVBAR.LIGHT_MODE' | translate) : ('NAVBAR.DARK_MODE' | translate)">
+                <span class="theme-icon">
+                  <i class="fas fa-moon" *ngIf="!isDarkTheme"></i>
+                  <i class="fas fa-sun" *ngIf="isDarkTheme"></i>
+                </span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- WhatsApp Floating Button -->
+<button 
+  class="whatsapp-button" 
+  [class.show]="showFloatingControls"
+  (click)="openWhatsApp()" 
+  aria-label="Chat on WhatsApp"
+  [@slideInOut]="showFloatingControls ? 'in' : 'out'">
+  <i class="fab fa-whatsapp"></i>
+</button>
+
+<!-- Enhanced Floating Controls -->
+<div 
+  class="floating-controls" 
+  [class.show]="showFloatingControls"
+  [@slideInOut]="showFloatingControls ? 'in' : 'out'">
+  
+  <!-- Theme Toggle -->
+  <button 
+    class="btn theme-toggle" 
+    (click)="toggleTheme()"
+    [attr.aria-label]="isDarkTheme ? ('NAVBAR.LIGHT_MODE' | translate) : ('NAVBAR.DARK_MODE' | translate)"
+    [title]="isDarkTheme ? ('NAVBAR.LIGHT_MODE' | translate) : ('NAVBAR.DARK_MODE' | translate)">
+    <i class="fas" [ngClass]="isDarkTheme ? 'fa-sun' : 'fa-moon'"></i>
+  </button>
+  
+  <!-- Language Selector -->
+  <select 
+    #floatingLangSelect 
+    class="form-select"
+    (change)="changeLanguage(floatingLangSelect.value)"
+    [attr.aria-label]="'NAVBAR.LANGUAGE_SELECTOR' | translate"
+    [title]="'NAVBAR.LANGUAGE_SELECTOR' | translate">
+    <option value="en" [selected]="currentLang === 'en'">EN</option>
+    <option value="ar" [selected]="currentLang === 'ar'">AR</option>
+  </select>
+</div>

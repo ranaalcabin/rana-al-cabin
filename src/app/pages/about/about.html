@@ -1,0 +1,157 @@
+<div class="about-wrapper" [lang]="currentLang" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+  <section class="about-hero"[class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="luxury-headline" [innerHTML]="'ABOUT.OUR_STORY' | translate"></h1>
+        <p class="luxury-subhead">{{ 'ABOUT.HERO_SUBTITLE' | translate }}</p>
+        <div class="cta-container">
+          <a routerLink="/contact" class="luxury-cta">
+            <span>{{ 'NAVBAR.GET_QUOTE' | translate }}</span>
+            <svg class="cta-arrow" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="company-intro"[class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="intro-container">
+      <div class="intro-image">
+        <div class="image-wrapper">
+          <img src="assets/hero-cabin6.png" [alt]="'ABOUT.FACTORY_IMAGE_ALT' | translate">
+        </div>
+      </div>
+      <div class="intro-content">
+        <h2 class="section-title">{{ 'ABOUT.COMPANY_INTRO_TITLE' | translate }}</h2>
+        <p class="section-subtitle">{{ 'ABOUT.COMPANY_INTRO_SUBTITLE' | translate }}</p>
+        <p class="intro-text">{{ 'ABOUT.COMPANY_INTRO_PARA1' | translate }}</p>
+        <p class="intro-text">{{ 'ABOUT.COMPANY_INTRO_PARA2' | translate }}</p>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">{{ 'ABOUT.STATS_YEARS' | translate }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">{{ 'ABOUT.STATS_PROJECTS' | translate }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">{{ 'ABOUT.STATS_SATISFACTION' | translate }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Global</div>
+            <div class="stat-label">{{ 'ABOUT.STATS_REACH' | translate }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-section" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="timeline-container">
+      <div class="section-header timeline-header">
+        <h2 class="section-title">{{ 'ABOUT.TIMELINE_TITLE' | translate }}</h2>
+        <p class="section-subtitle">{{ 'ABOUT.TIMELINE_SUBTITLE' | translate }}</p>
+      </div>
+
+      <div class="timeline-items">
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-content">
+            <h3>{{ 'ABOUT.TIMELINE_YEAR1_TITLE' | translate }}</h3>
+            <p>{{ 'ABOUT.TIMELINE_YEAR1_DESC' | translate }}</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-content">
+            <h3>{{ 'ABOUT.TIMELINE_YEAR2_TITLE' | translate }}</h3>
+            <p>{{ 'ABOUT.TIMELINE_YEAR2_DESC' | translate }}</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-content">
+            <h3>{{ 'ABOUT.TIMELINE_YEAR3_TITLE' | translate }}</h3>
+            <p>{{ 'ABOUT.TIMELINE_YEAR3_DESC' | translate }}</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="timeline-content">
+            <h3>{{ 'ABOUT.TIMELINE_YEAR4_TITLE' | translate }}</h3>
+            <p>{{ 'ABOUT.TIMELINE_YEAR4_DESC' | translate }}</p>
+          </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="team-section" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="team-container">
+      <div class="section-header team-header">
+        <h2 class="section-title">{{ 'ABOUT.TEAM_TITLE' | translate }}</h2>
+        <p class="section-subtitle">{{ 'ABOUT.TEAM_SUBTITLE' | translate }}</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-member-card">
+          <div class="member-image">
+            <img src="assets/client-1.jpg" alt="{{ 'ABOUT.TEAM_MEMBER1_NAME' | translate }}">
+          </div>
+          <h3>{{ 'ABOUT.TEAM_MEMBER1_NAME' | translate }}</h3>
+          <div class="member-title">{{ 'ABOUT.TEAM_MEMBER1_ROLE' | translate }}</div>
+          <p>{{ 'ABOUT.TEAM_MEMBER1_BIO' | translate }}</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-image">
+            <img src="assets/client-1.jpg" alt="{{ 'ABOUT.TEAM_MEMBER2_NAME' | translate }}">
+          </div>
+          <h3>{{ 'ABOUT.TEAM_MEMBER2_NAME' | translate }}</h3>
+          <div class="member-title">{{ 'ABOUT.TEAM_MEMBER2_ROLE' | translate }}</div>
+          <p>{{ 'ABOUT.TEAM_MEMBER2_BIO' | translate }}</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-image">
+            <img src="assets/client-1.jpg" alt="{{ 'ABOUT.TEAM_MEMBER3_NAME' | translate }}">
+          </div>
+          <h3>{{ 'ABOUT.TEAM_MEMBER3_NAME' | translate }}</h3>
+          <div class="member-title">{{ 'ABOUT.TEAM_MEMBER3_ROLE' | translate }}</div>
+          <p>{{ 'ABOUT.TEAM_MEMBER3_BIO' | translate }}</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="team-member-card">
+          <div class="member-image">
+            <img src="assets/client-3.jpg" alt="{{ 'ABOUT.TEAM_MEMBER4_NAME' | translate }}">
+          </div>
+          <h3>{{ 'ABOUT.TEAM_MEMBER4_NAME' | translate }}</h3>
+          <div class="member-title">{{ 'ABOUT.TEAM_MEMBER4_ROLE' | translate }}</div>
+          <p>{{ 'ABOUT.TEAM_MEMBER4_BIO' | translate }}</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+</div>

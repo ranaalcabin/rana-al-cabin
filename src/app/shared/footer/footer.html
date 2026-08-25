@@ -1,0 +1,96 @@
+<footer class="footer" [ngClass]="{'dark': isDarkTheme}">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <!-- Company Info Section -->
+      <div class="footer-section">
+        <div class="footer-logo">
+          <div class="logo-icon">RA</div>
+          <div>
+            <div class="logo-text">{{ 'FOOTER.BRAND' | translate }}</div>
+            <div class="logo-subtext">{{ 'FOOTER.BRAND_SUBTEXT' | translate }}</div>
+          </div>
+        </div>
+        <p class="footer-description">{{ 'FOOTER.COMPANY_DESCRIPTION' | translate }}</p>
+        <div class="social-links">
+          <a href="https://facebook.com/ranaalcabin" class="social-link" [attr.aria-label]="'FOOTER.SOCIAL.FACEBOOK' | translate">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com/ranaalcabin" class="social-link" [attr.aria-label]="'FOOTER.SOCIAL.TWITTER' | translate">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://linkedin.com/company/ranaalcabin" class="social-link" [attr.aria-label]="'FOOTER.SOCIAL.LINKEDIN' | translate">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://tiktok.com/@ranaalcabin" class="social-link" [attr.aria-label]="'FOOTER.SOCIAL.TIKTOK' | translate">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Our Solutions Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">{{ 'FOOTER.SOLUTIONS' | translate }}</h3>
+        <ul class="footer-links">
+          <li><a [routerLink]="['/services']" fragment="modular-workspaces" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.MODULAR_WORKSPACES' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="portable-residences" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.PORTABLE_RESIDENCES' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="prayer-sanctuaries" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.PRAYER_SANCTUARIES' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="sanitation-facilities" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.SANITATION_FACILITIES' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="secure-storage" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.SECURE_STORAGE' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="event-modules" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.EVENT_MODULES' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="protective-shelters" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.PROTECTIVE_SHELTERS' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="multi-level-cabins" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.MULTI_LEVEL_CABINS' | translate }}</a></li>
+          <li><a [routerLink]="['/services']" fragment="medical-units" (click)="onServiceClick()">{{ 'NAVBAR.SERVICE_CATEGORIES.MEDICAL_UNITS' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info Section -->
+      <div class="footer-section">
+        <h3 class="footer-title">{{ 'FOOTER.HEAD_OFFICE' | translate }}</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-text">
+            <div class="contact-label">{{ 'FOOTER.OFFICE_ADDRESS_LABEL' | translate }}</div>
+            <div class="contact-value">{{ 'FOOTER.OFFICE_ADDRESS' | translate }}</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-text">
+            <div class="contact-label">{{ 'FOOTER.SALES_MARKETING' | translate }}</div>
+            <div class="contact-value">{{ salesPhone$ | async }}</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div class="contact-text">
+            <div class="contact-label">{{ 'FOOTER.SUPPORT' | translate }}</div>
+            <div class="contact-value">{{ supportPhone$ | async }}</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-text">
+            <div class="contact-label">{{ 'FOOTER.EMAIL' | translate }}</div>
+            <div class="contact-value">{{ email$ | async }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      {{ 'FOOTER.COPYRIGHT' | translate: { currentYear: currentYear } }} |
+      <a [routerLink]="['/privacy']">{{ 'FOOTER.PRIVACY' | translate }}</a> |
+      <a [routerLink]="['/terms']">{{ 'FOOTER.TERMS' | translate }}</a>
+    </p>
+  </div>
+</footer>

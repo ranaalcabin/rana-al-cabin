@@ -1,0 +1,210 @@
+<div class="contact-wrapper" [lang]="currentLang" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+  <!-- Hero Section -->
+  <section 
+    class="contact-hero" 
+    #heroSection
+    [class.dark]="themeService.getCurrentTheme() === 'dark'"
+    (mousemove)="onMouseMove($event)"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()">
+    <div class="cursor-glow" #cursorGlow></div>
+    <div class="hero-overlay"></div>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="luxury-headline" [attr.data-text]="'CONTACT.HEADLINE' | translate">
+          {{ 'CONTACT.HEADLINE' | translate }}
+        </h1>
+        <p class="luxury-subhead">
+          {{ 'CONTACT.SUBHEAD' | translate }}
+        </p>
+        <div class="hero-social-links">
+          <a 
+            *ngFor="let link of socialLinks" 
+            [href]="link.url" 
+            target="_blank" 
+            class="social-icon"
+            [attr.aria-label]="link.label">
+            <i [class]="link.icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Main Section -->
+  <section class="contact-main" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="contact-container">
+      <!-- Contact Info -->
+      <div class="contact-info" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+        <div class="info-card" style="--delay: 0s">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-content">
+            <h3>{{ 'CONTACT.ADDRESS_TITLE' | translate }}</h3>
+            <p>{{ 'CONTACT.ADDRESS' | translate }}</p>
+          </div>
+        </div>
+        <div class="info-card" style="--delay: 0.2s">
+          <div class="info-icon"><i class="fas fa-phone"></i></div>
+          <div class="info-content">
+            <h3>{{ 'CONTACT.PHONE_TITLE' | translate }}</h3>
+            <p>{{ 'CONTACT.PHONE' | translate }}</p>
+            <p>{{ 'CONTACT.SUPPORT_PHONE' | translate }}</p>
+          </div>
+        </div>
+        <div class="info-card" style="--delay: 0.4s">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-content">
+            <h3>{{ 'CONTACT.EMAIL_TITLE' | translate }}</h3>
+            <p>{{ 'CONTACT.EMAIL' | translate }}</p>
+          </div>
+        </div>
+        <div class="info-card" style="--delay: 0.6s">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div class="info-content">
+            <h3>{{ 'CONTACT.HOURS_TITLE' | translate }}</h3>
+            <p>{{ 'CONTACT.HOURS_WEEKDAYS' | translate }}</p>
+            <p>{{ 'CONTACT.HOURS_WEEKEND' | translate }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+    <!-- Contact Form -->
+<div class="contact-form-container" [class.dark]="themeService.getCurrentTheme() === 'dark'" #contactFormSection>
+  <div class="form-header">
+    <h2>{{ 'CONTACT.FORM_TITLE' | translate }}</h2>
+    <p>{{ 'CONTACT.FORM_SUBTITLE' | translate }}</p>
+  </div>
+
+  <!-- ✅ Moved below the form now -->
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+    <!-- Your Inputs (unchanged) -->
+    <!-- Name -->
+    <div class="form-group" style="--delay: 0s">
+      <div class="input-wrapper">
+        <input type="text" id="name" formControlName="name" required>
+        <label for="name" class="float-label">{{ 'CONTACT.FORM_NAME' | translate }}</label>
+        <div *ngIf="contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched)" class="error-message">
+          {{ 'CONTACT.FORM_ERROR_NAME' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group" style="--delay: 0.2s">
+      <div class="input-wrapper">
+        <input type="email" id="email" formControlName="email" required>
+        <label for="email" class="float-label">{{ 'CONTACT.FORM_EMAIL' | translate }}</label>
+        <div *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)" class="error-message">
+          {{ 'CONTACT.FORM_ERROR_EMAIL' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group" style="--delay: 0.4s">
+      <div class="input-wrapper">
+        <input type="tel" id="phone" formControlName="phone" required>
+        <label for="phone" class="float-label">{{ 'CONTACT.FORM_PHONE' | translate }}</label>
+        <div *ngIf="contactForm.get('phone')?.invalid && (contactForm.get('phone')?.dirty || contactForm.get('phone')?.touched)" class="error-message">
+          {{ 'CONTACT.FORM_ERROR_PHONE' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Subject -->
+    <div class="form-group" style="--delay: 0.6s">
+      <div class="input-wrapper">
+        <select id="subject" formControlName="subject" required>
+          <option value="" disabled>{{ 'CONTACT.FORM_SUBJECT_PLACEHOLDER' | translate }}</option>
+          <option value="general">{{ 'CONTACT.FORM_SUBJECT_GENERAL' | translate }}</option>
+          <option value="sales">{{ 'CONTACT.FORM_SUBJECT_SALES' | translate }}</option>
+          <option value="support">{{ 'CONTACT.FORM_SUBJECT_SUPPORT' | translate }}</option>
+          <option value="custom">{{ 'CONTACT.FORM_SUBJECT_CUSTOM' | translate }}</option>
+          <option value="quote">{{ 'CONTACT.FORM_SUBJECT_QUOTE' | translate }}</option>
+        </select>
+        <label for="subject" class="float-label">{{ 'CONTACT.FORM_SUBJECT' | translate }}</label>
+        <div *ngIf="contactForm.get('subject')?.invalid && (contactForm.get('subject')?.dirty || contactForm.get('subject')?.touched)" class="error-message">
+          {{ 'CONTACT.FORM_ERROR_SUBJECT' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="form-group" style="--delay: 0.8s">
+      <div class="input-wrapper">
+        <textarea id="message" formControlName="message" rows="5" required></textarea>
+        <label for="message" class="float-label">{{ 'CONTACT.FORM_MESSAGE' | translate }}</label>
+        <div *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)" class="error-message">
+          {{ 'CONTACT.FORM_ERROR_MESSAGE' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Consent -->
+    <div class="form-group checkbox-group" style="--delay: 1s">
+      <input type="checkbox" id="consent" formControlName="consent">
+      <label for="consent" [innerHTML]="'CONTACT.FORM_CONSENT' | translate"></label>
+      <div *ngIf="contactForm.get('consent')?.invalid && (contactForm.get('consent')?.dirty || contactForm.get('consent')?.touched)" class="error-message">
+        {{ 'CONTACT.FORM_ERROR_CONSENT' | translate }}
+      </div>
+    </div>
+
+    <!-- ✅ Submit Button -->
+    <button type="submit" class="submit-btn" [disabled]="contactForm.invalid || isSubmitting">
+      <span *ngIf="!isSubmitting" class="loading-content">
+        <i class="fas fa-paper-plane"></i> {{ 'CONTACT.FORM_SUBMIT' | translate }}
+      </span>
+      <div *ngIf="isSubmitting" class="submission-loading">
+        <div class="loading-spinner"></div>
+        <p>{{ 'CONTACT.FORM_SUBMITTING' | translate }}</p>
+      </div>
+    </button>
+  </form>
+
+  <!-- ✅ Status Messages (Moved outside form) -->
+  <div *ngIf="submitSuccess" class="success-message">
+    {{ 'CONTACT.FORM_SUCCESS' | translate }}
+  </div>
+  <div *ngIf="submitError" class="error-message">
+    {{ submitError }}
+  </div>
+</div>
+
+    </div>
+  </section>
+
+ <!-- Map Section -->
+<section class="map-section" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=JMBA3316%2C%203316%20Abdullah%20bin%20Jasser%2C%20Al%20Barakah%2C%20Jeddah%2022632%2C%20Saudi%20Arabia&output=embed"
+      width="100%"
+      height="500"
+      style="border:0;"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    </iframe>
+  </div>
+</section>
+
+
+  <!-- CTA Section -->
+  <section class="contact-cta" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="cta-container">
+      <h2>{{ 'CONTACT.CTA_TITLE' | translate }}</h2>
+      <p>{{ 'CONTACT.CTA_SUBTITLE' | translate }}</p>
+      <a routerLink="/services" class="cta-btn">
+        <span>{{ 'CONTACT.CTA_BUTTON' | translate }}</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+</div>

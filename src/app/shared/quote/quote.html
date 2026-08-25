@@ -1,0 +1,318 @@
+<div class="quote-wrapper" [lang]="currentLang" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+  <!-- Hero Section -->
+  <section class="quote-hero" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="hero-overlay"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="luxury-headline">{{ 'QUOTE.HERO_TITLE' | translate }}</h1>
+        <p class="luxury-subhead">{{ 'QUOTE.HERO_SUBTITLE' | translate }}</p>
+        <div class="hero-features">
+          <div class="feature-item">
+            <i class="fas fa-clock"></i>
+            <span>{{ 'QUOTE.FEATURE_FAST' | translate }}</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-calculator"></i>
+            <span>{{ 'QUOTE.FEATURE_ACCURATE' | translate }}</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-handshake"></i>
+            <span>{{ 'QUOTE.FEATURE_PROFESSIONAL' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section class="quote-main" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="quote-container">
+      <div class="quote-form-container" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+        <div class="form-header">
+          <h2>{{ 'QUOTE.FORM_TITLE' | translate }}</h2>
+          <p>{{ 'QUOTE.FORM_SUBTITLE' | translate }}</p>
+        </div>
+        
+        <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()" class="quote-form" novalidate>
+          
+          <!-- Personal Information Section -->
+          <div class="form-section">
+            <h3><i class="fas fa-user"></i> {{ 'QUOTE.SECTION_PERSONAL' | translate }}</h3>
+            
+            <div class="form-row">
+              <div class="form-group" style="--delay: 0s">
+                <div class="input-wrapper">
+                  <input type="text" id="name" formControlName="name" required>
+                  <label for="name" class="float-label">{{ 'QUOTE.FORM_NAME' | translate }}</label>
+                  <div *ngIf="quoteForm.get('name')?.invalid && (quoteForm.get('name')?.dirty || quoteForm.get('name')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_NAME' | translate }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="--delay: 0.1s">
+                <div class="input-wrapper">
+                  <input type="email" id="email" formControlName="email" required>
+                  <label for="email" class="float-label">{{ 'QUOTE.FORM_EMAIL' | translate }}</label>
+                  <div *ngIf="quoteForm.get('email')?.invalid && (quoteForm.get('email')?.dirty || quoteForm.get('email')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_EMAIL' | translate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group" style="--delay: 0.2s">
+                <div class="input-wrapper">
+                  <input type="tel" id="phone" formControlName="phone" required>
+                  <label for="phone" class="float-label">{{ 'QUOTE.FORM_PHONE' | translate }}</label>
+                  <div *ngIf="quoteForm.get('phone')?.invalid && (quoteForm.get('phone')?.dirty || quoteForm.get('phone')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_PHONE' | translate }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="--delay: 0.3s">
+                <div class="input-wrapper">
+                  <input type="text" id="company" formControlName="company">
+                  <label for="company" class="float-label">{{ 'QUOTE.FORM_COMPANY' | translate }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Information Section -->
+          <div class="form-section">
+            <h3><i class="fas fa-project-diagram"></i> {{ 'QUOTE.SECTION_PROJECT' | translate }}</h3>
+            
+            <div class="form-row">
+              <div class="form-group" style="--delay: 0.4s">
+                <div class="input-wrapper">
+                  <select id="projectType" formControlName="projectType" required>
+                    <option value="" disabled selected></option>
+                    <option value="new-construction">{{ 'QUOTE.PROJECT_NEW' | translate }}</option>
+                    <option value="rental">{{ 'QUOTE.PROJECT_RENTAL' | translate }}</option>
+                    <option value="lease-to-own">{{ 'QUOTE.PROJECT_LEASE' | translate }}</option>
+                    <option value="custom-design">{{ 'QUOTE.PROJECT_CUSTOM' | translate }}</option>
+                  </select>
+                  <label for="projectType" class="float-label">{{ 'QUOTE.FORM_PROJECT_TYPE' | translate }}</label>
+                  <div *ngIf="quoteForm.get('projectType')?.invalid && (quoteForm.get('projectType')?.dirty || quoteForm.get('projectType')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_PROJECT_TYPE' | translate }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="--delay: 0.5s">
+                <div class="input-wrapper">
+                  <select id="serviceCategory" formControlName="serviceCategory" required>
+                    <option value="" disabled selected></option>
+                    <option *ngFor="let category of serviceCategories" [value]="category.value">
+                      {{ getServiceCategoryKey(category.value) | translate }}
+                    </option>
+                  </select>
+                  <label for="serviceCategory" class="float-label">{{ 'QUOTE.FORM_SERVICE_CATEGORY' | translate }}</label>
+                  <div *ngIf="quoteForm.get('serviceCategory')?.invalid && (quoteForm.get('serviceCategory')?.dirty || quoteForm.get('serviceCategory')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_SERVICE_CATEGORY' | translate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group" style="--delay: 0.6s">
+                <div class="input-wrapper">
+                  <select id="projectSize" formControlName="projectSize" required>
+                    <option value="" disabled selected></option>
+                    <option value="small">{{ 'QUOTE.SIZE_SMALL' | translate }}</option>
+                    <option value="medium">{{ 'QUOTE.SIZE_MEDIUM' | translate }}</option>
+                    <option value="large">{{ 'QUOTE.SIZE_LARGE' | translate }}</option>
+                    <option value="enterprise">{{ 'QUOTE.SIZE_ENTERPRISE' | translate }}</option>
+                  </select>
+                  <label for="projectSize" class="float-label">{{ 'QUOTE.FORM_PROJECT_SIZE' | translate }}</label>
+                  <div *ngIf="quoteForm.get('projectSize')?.invalid && (quoteForm.get('projectSize')?.dirty || quoteForm.get('projectSize')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_PROJECT_SIZE' | translate }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="--delay: 0.7s">
+                <div class="input-wrapper">
+                  <select id="budget" formControlName="budget" required>
+                    <option value="" disabled selected></option>
+                    <option value="under-50k">{{ 'QUOTE.BUDGET_UNDER_50K' | translate }}</option>
+                    <option value="50k-100k">{{ 'QUOTE.BUDGET_50K_100K' | translate }}</option>
+                    <option value="100k-250k">{{ 'QUOTE.BUDGET_100K_250K' | translate }}</option>
+                    <option value="250k-500k">{{ 'QUOTE.BUDGET_250K_500K' | translate }}</option>
+                    <option value="over-500k">{{ 'QUOTE.BUDGET_OVER_500K' | translate }}</option>
+                  </select>
+                  <label for="budget" class="float-label">{{ 'QUOTE.FORM_BUDGET' | translate }}</label>
+                  <div *ngIf="quoteForm.get('budget')?.invalid && (quoteForm.get('budget')?.dirty || quoteForm.get('budget')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_BUDGET' | translate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group" style="--delay: 0.8s">
+                <div class="input-wrapper">
+                  <select id="timeline" formControlName="timeline" required>
+                    <option value="" disabled selected></option>
+                    <option value="asap">{{ 'QUOTE.TIMELINE_ASAP' | translate }}</option>
+                    <option value="1-3-months">{{ 'QUOTE.TIMELINE_1_3_MONTHS' | translate }}</option>
+                    <option value="3-6-months">{{ 'QUOTE.TIMELINE_3_6_MONTHS' | translate }}</option>
+                    <option value="6-12-months">{{ 'QUOTE.TIMELINE_6_12_MONTHS' | translate }}</option>
+                    <option value="over-12-months">{{ 'QUOTE.TIMELINE_OVER_12_MONTHS' | translate }}</option>
+                  </select>
+                  <label for="timeline" class="float-label">{{ 'QUOTE.FORM_TIMELINE' | translate }}</label>
+                  <div *ngIf="quoteForm.get('timeline')?.invalid && (quoteForm.get('timeline')?.dirty || quoteForm.get('timeline')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_TIMELINE' | translate }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group" style="--delay: 0.9s">
+                <div class="input-wrapper">
+                  <input type="text" id="location" formControlName="location" required>
+                  <label for="location" class="float-label">{{ 'QUOTE.FORM_LOCATION' | translate }}</label>
+                  <div *ngIf="quoteForm.get('location')?.invalid && (quoteForm.get('location')?.dirty || quoteForm.get('location')?.touched)"
+                       class="error-message">
+                    {{ 'QUOTE.FORM_ERROR_LOCATION' | translate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Specifications Section -->
+          <div class="form-section">
+            <h3><i class="fas fa-cogs"></i> {{ 'QUOTE.SECTION_SPECIFICATIONS' | translate }}</h3>
+            
+            <div class="form-group" style="--delay: 1s">
+              <div class="input-wrapper">
+                <textarea id="specifications" formControlName="specifications" rows="5" required></textarea>
+                <label for="specifications" class="float-label">{{ 'QUOTE.FORM_SPECIFICATIONS' | translate }}</label>
+                <div *ngIf="quoteForm.get('specifications')?.invalid && (quoteForm.get('specifications')?.dirty || quoteForm.get('specifications')?.touched)"
+                     class="error-message">
+                  {{ 'QUOTE.FORM_ERROR_SPECIFICATIONS' | translate }}
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group" style="--delay: 1.1s">
+              <div class="input-wrapper">
+                <textarea id="specialRequirements" formControlName="specialRequirements" rows="3"></textarea>
+                <label for="specialRequirements" class="float-label">{{ 'QUOTE.FORM_SPECIAL_REQUIREMENTS' | translate }}</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information Section -->
+          <div class="form-section">
+            <h3><i class="fas fa-info-circle"></i> {{ 'QUOTE.SECTION_ADDITIONAL' | translate }}</h3>
+            
+            <div class="checkbox-group-section">
+              <div class="checkbox-group" style="--delay: 1.2s">
+                <input type="checkbox" id="hasUtilities" formControlName="hasUtilities">
+                <label for="hasUtilities">{{ 'QUOTE.FORM_HAS_UTILITIES' | translate }}</label>
+              </div>
+              
+              <div class="checkbox-group" style="--delay: 1.3s">
+                <input type="checkbox" id="needsPermits" formControlName="needsPermits">
+                <label for="needsPermits">{{ 'QUOTE.FORM_NEEDS_PERMITS' | translate }}</label>
+              </div>
+            </div>
+            
+            <div class="form-group" style="--delay: 1.4s">
+              <div class="input-wrapper">
+                <select id="previousExperience" formControlName="previousExperience">
+                  <option value="" disabled selected></option>
+                  <option value="first-time">{{ 'QUOTE.EXPERIENCE_FIRST_TIME' | translate }}</option>
+                  <option value="some-experience">{{ 'QUOTE.EXPERIENCE_SOME' | translate }}</option>
+                  <option value="experienced">{{ 'QUOTE.EXPERIENCE_EXPERIENCED' | translate }}</option>
+                </select>
+                <label for="previousExperience" class="float-label">{{ 'QUOTE.FORM_PREVIOUS_EXPERIENCE' | translate }}</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consent Section -->
+          <div class="form-section">
+            <div class="checkbox-group" style="--delay: 1.5s">
+              <input type="checkbox" id="consent" formControlName="consent" required>
+              <label for="consent" [innerHTML]="'QUOTE.FORM_CONSENT' | translate"></label>
+              <div *ngIf="quoteForm.get('consent')?.invalid && (quoteForm.get('consent')?.dirty || quoteForm.get('consent')?.touched)"
+                   class="error-message">
+                {{ 'QUOTE.FORM_ERROR_CONSENT' | translate }}
+              </div>
+            </div>
+            
+            <div class="checkbox-group" style="--delay: 1.6s">
+              <input type="checkbox" id="newsletter" formControlName="newsletter">
+              <label for="newsletter">{{ 'QUOTE.FORM_NEWSLETTER' | translate }}</label>
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn" [disabled]="quoteForm.invalid || isSubmitting" style="--delay: 1.7s">
+            <span *ngIf="!isSubmitting" class="loading-content">
+              <i class="fas fa-paper-plane"></i> {{ 'QUOTE.FORM_SUBMIT' | translate }}
+            </span>
+            <div *ngIf="isSubmitting" class="submission-loading">
+              <div class="loading-spinner"></div>
+              <p>{{ 'QUOTE.FORM_SUBMITTING' | translate }}</p>
+            </div>
+          </button>
+        </form>
+
+        <!-- Status Messages -->
+        <div *ngIf="submitSuccess" class="success-message">
+          {{ 'QUOTE.FORM_SUCCESS' | translate }}
+        </div>
+        <div *ngIf="submitError" class="error-message">
+          {{ submitError }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="quote-benefits" [class.dark]="themeService.getCurrentTheme() === 'dark'">
+    <div class="benefits-container">
+      <h2>{{ 'QUOTE.BENEFITS_TITLE' | translate }}</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card" style="--delay: 0s">
+          <div class="benefit-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>{{ 'QUOTE.BENEFIT_FAST_TITLE' | translate }}</h3>
+          <p>{{ 'QUOTE.BENEFIT_FAST_DESC' | translate }}</p>
+        </div>
+        
+        <div class="benefit-card" style="--delay: 0.2s">
+          <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>{{ 'QUOTE.BENEFIT_RELIABLE_TITLE' | translate }}</h3>
+          <p>{{ 'QUOTE.BENEFIT_RELIABLE_DESC' | translate }}</p>
+        </div>
+        
+        <div class="benefit-card" style="--delay: 0.4s">
+          <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>{{ 'QUOTE.BENEFIT_EXPERT_TITLE' | translate }}</h3>
+          <p>{{ 'QUOTE.BENEFIT_EXPERT_DESC' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
