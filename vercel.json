@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/.*",
-      "dest": "dist/rana-al-cabin/server/server.mjs"
+  "rewrites": [
+    { "source": "/", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/api" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/rana-al-cabin/**"
     }
-  ]
+  }
 }
