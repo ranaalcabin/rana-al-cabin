@@ -9,7 +9,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class SeoService {
   private readonly baseUrl = 'https://www.ranaalcabin.com';
-  private readonly defaultImage = '/assets/og-image.jpg';
+  private readonly defaultImage = '/assets/logo.png';
 
   constructor(
     private title: Title,

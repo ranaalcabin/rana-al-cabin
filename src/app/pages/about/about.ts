@@ -94,7 +94,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Rana Waqas',
       position: 'ABOUT.FOUNDER_CEO',
       bio: 'ABOUT.FOUNDER_BIO',
-      image: 'assets/team/rana-waqas.jpg',
+      image: 'assets/client-1.jpg',
       social: [
         { icon: '📱', url: 'tel:+923104498417' },
         { icon: '📧', url: 'mailto:contact@ranaalcabin.com' }
@@ -104,7 +104,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Rana Waqas',
       position: 'ABOUT.OPERATIONS_DIRECTOR',
       bio: 'ABOUT.OPERATIONS_BIO',
-      image: 'assets/team/awais-ameer.jpg',
+      image: 'assets/client-2.jpg',
       social: [
         { icon: '💼', url: 'https://linkedin.com/in/awaisameer' },
         { icon: '📧', url: 'mailto:awais.ameer181@gmail.com' },
@@ -115,7 +115,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Azeem Tariq',
       position: 'ABOUT.DESIGN_HEAD',
       bio: 'ABOUT.DESIGN_BIO',
-      image: 'assets/team/azeem-tariq.jpg',
+      image: 'assets/client-3.jpg',
       social: [
         { icon: '📱', url: 'tel:+923302166813' },
         { icon: '📧', url: 'mailto:design@ranaalcabin.com' }
@@ -125,7 +125,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Ahmed',
       position: 'ABOUT.QUALITY_MANAGER',
       bio: 'ABOUT.QUALITY_BIO',
-      image: 'assets/team/ahmed.jpg',
+      image: 'assets/client-1.jpg',
       social: [
         { icon: '📧', url: 'mailto:quality@ranaalcabin.com' },
         { icon: '📱', url: 'tel:+966501234570' }
@@ -135,7 +135,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Fatima',
       position: 'ABOUT.PROJECT_MANAGER',
       bio: 'ABOUT.PROJECT_BIO',
-      image: 'assets/team/fatima.jpg',
+      image: 'assets/client-2.jpg',
       social: [
         { icon: '📧', url: 'mailto:projects@ranaalcabin.com' },
         { icon: '📱', url: 'tel:+966501234571' }
@@ -145,7 +145,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Khalid',
       position: 'ABOUT.TECHNICAL_DIRECTOR',
       bio: 'ABOUT.TECHNICAL_BIO',
-      image: 'assets/team/khalid.jpg',
+      image: 'assets/client-3.jpg',
       social: [
         { icon: '📧', url: 'mailto:technical@ranaalcabin.com' },
         { icon: '📱', url: 'tel:+966501234572' }
@@ -155,7 +155,7 @@ export class About implements OnInit, OnDestroy {
       name: 'Al-Ghamdi',
       position: 'ABOUT.TEAM_MEMBER4_ROLE',
       bio: 'ABOUT.TEAM_MEMBER4_BIO',
-      image: 'assets/team/al-ghamdi.jpg',
+      image: 'assets/client-1.jpg',
       social: [
         { icon: '📧', url: 'mailto:clientrelations@ranaalcabin.com' },
         { icon: '📱', url: 'tel:+966501234573' }
@@ -164,16 +164,7 @@ export class About implements OnInit, OnDestroy {
   ];
 
   // Certifications
-  certifications: Certification[] = [
-    { name: 'ABOUT.ISO_9001_CERT', image: 'assets/certifications/iso-9001.png' },
-    { name: 'ABOUT.ISO_14001_CERT', image: 'assets/certifications/iso-14001.png' },
-    { name: 'ABOUT.SASO_APPROVED', image: 'assets/certifications/saso.png' },
-    { name: 'ABOUT.GCC_STANDARDS', image: 'assets/certifications/gcc.png' },
-    { name: 'ABOUT.SAFETY_CERT', image: 'assets/certifications/safety.png' },
-    { name: 'ABOUT.GREEN_BUILDING', image: 'assets/certifications/green-building.png' },
-    { name: 'ABOUT.CE_MARKING', image: 'assets/certifications/ce-marking.png' },
-    { name: 'ABOUT.FIRE_SAFETY', image: 'assets/certifications/fire-safety.png' }
-  ];
+  certifications: Certification[] = [];
 
   constructor(
     private seoService: SeoService,
