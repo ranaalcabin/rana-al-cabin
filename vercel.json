@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "public": true,
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "dist/rana-al-cabin/server/server.mjs"
+    }
+  ]
+}
