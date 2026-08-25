@@ -12,7 +12,7 @@ import { TranslateServerLoader } from './translate.loader.server';
     provide:TranslateLoader,
     useClass:TranslateServerLoader
   }})],
-  //providers: [provideServerRendering(withRoutes(serverRoutes))],
+  providers: [provideServerRendering(withRoutes(serverRoutes))],
   bootstrap: [App],
 })
 export class AppServerModule {}
