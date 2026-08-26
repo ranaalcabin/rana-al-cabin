@@ -20,14 +20,20 @@
         
         <div class="hero-cabin-container">
             <div class="cabin-3d-model">
+                <div class="video-fallback" *ngIf="!isVideoReady">
+                    <img src="assets/hero-cabin.png" alt="Rana Al Cabin" class="fallback-img" loading="eager" width="800" height="445">
+                    <div class="video-loading-shimmer"></div>
+                </div>
                 <video 
                     #videoPlayer
                     autoplay 
                     muted 
                     loop 
                     playsinline 
-                    preload="metadata"
+                    preload="none"
+                    poster="assets/hero-cabin.png"
                     class="main-cabin" 
+                    [class.video-hidden]="!isVideoReady"
                     [attr.alt]="'HOME.WELCOME_IMAGE_ALT' | translate">
                     <source src="assets/rana-al-cabin-ad.webm" type="video/webm">
                     {{ 'HOME.VIDEO_NOT_SUPPORTED' | translate }}
@@ -70,7 +76,7 @@
                         <div class="metal-surface"></div>
                         <div class="composite-layers">
                             <div class="layer layer-1">
-                                <img style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin6.jpg" [attr.alt]="'FEATURES.PREMIUM_MATERIALS' | translate">
+                                <img loading="lazy" width="400" height="300" style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin6.jpg" [attr.alt]="'FEATURES.PREMIUM_MATERIALS' | translate">
                             </div>
                         </div>
                     </div>
@@ -93,7 +99,7 @@
                         <div class="metal-surface"></div>
                         <div class="composite-layers">
                             <div class="layer layer-1">
-                                <img style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin5.png" [attr.alt]="'FEATURES.BESPOKE_DESIGN' | translate">
+                                <img loading="lazy" width="400" height="300" style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin5.png" [attr.alt]="'FEATURES.BESPOKE_DESIGN' | translate">
                             </div>
                         </div>
                     </div>
@@ -116,7 +122,7 @@
                         <div class="metal-surface"></div>
                         <div class="composite-layers">
                             <div class="layer layer-1">
-                                <img style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin4.png" [attr.alt]="'FEATURES.SMART_TECH' | translate">
+                                <img loading="lazy" width="400" height="300" style="object-fit:cover; height: 300px; width: auto;" src="assets/hero-cabin4.png" [attr.alt]="'FEATURES.SMART_TECH' | translate">
                             </div>
                         </div>
                     </div>
@@ -135,7 +141,7 @@
             <div class="showcase-grid">
                 <div class="cabin-card" *ngFor="let cabin of cabins">
                     <div class="cabin-image" (click)="openModal(cabin)">
-                        <img [src]="cabin.image" [attr.alt]="cabin.name | translate">
+                        <img [src]="cabin.image" [attr.alt]="cabin.name | translate" loading="lazy" width="400" height="250">
                         <div class="cabin-overlay">
                             <button class="view-details">{{ 'HOME.VIEW_DETAILS' | translate }}</button>
                         </div>
@@ -163,7 +169,7 @@
             <div class="testimonial-cards">
                 <div class="testimonial-card" *ngFor="let testimonial of testimonials">
                     <div class="client-image">
-                        <img [src]="testimonial.image" [attr.alt]="testimonial.name | translate">
+                        <img [src]="testimonial.image" [attr.alt]="testimonial.name | translate" loading="lazy" width="80" height="80">
                     </div>
                     <div class="testimonial-content">
                         <div class="quote-icon">“</div>

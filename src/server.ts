@@ -12,9 +12,10 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
-// Serve static assets from /assets
+// Serve static assets from /assets with long cache
 app.use('/assets', express.static(join(browserDistFolder, 'assets'), {
-  maxAge: '1y'
+  maxAge: '1y',
+  immutable: true
 }));
 
 // Serve other static files
@@ -22,6 +23,11 @@ app.use(express.static(browserDistFolder, {
   maxAge: '1y',
   index: false
 }));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 // Catch-all route for SSR
 app.get(/.*/, (req, res, next) => {

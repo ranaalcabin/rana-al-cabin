@@ -27,7 +27,7 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
   private langSubscription?: Subscription;
   private visibilityChangeHandler?: () => void;
   private videoLoadedHandler?: () => void;
-  private isVideoReady = false;
+  isVideoReady = false;
 
   constructor(
     private seoService: SeoService,
@@ -60,7 +60,10 @@ export class Home implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId) && this.videoPlayer) {
-      this.initializeVideo();
+      // Defer video loading to after page paint
+      setTimeout(() => {
+        this.initializeVideo();
+      }, 1000);
     }
   }
 
